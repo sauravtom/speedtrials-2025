@@ -14,10 +14,10 @@ import { eq, desc } from 'drizzle-orm'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { systemId: string } }
+  { params }: { params: Promise<{ systemId: string }> }
 ) {
   try {
-    const { systemId } = params
+    const { systemId } = await params
 
     // Get main system information
     const system = await db
